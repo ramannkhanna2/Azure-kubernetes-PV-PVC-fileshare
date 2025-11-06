@@ -1,13 +1,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: azurefile
+  name: raman-pv
 spec:
   capacity:
-    storage: 5Gi
+    storage: 15Mi
   accessModes:
     - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""
   azureFile:
     secretName: azure-secret
-    shareName: test-share
+    secretNamespace: raman
+    shareName: raman-file-share
     readOnly: false
